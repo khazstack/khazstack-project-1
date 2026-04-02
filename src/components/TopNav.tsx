@@ -10,7 +10,7 @@ const TopNav = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 flex justify-center items-center gap-8 h-[44px] z-50">
+    <nav className="fixed top-0 left-0 right-0 flex justify-center items-center gap-8 h-[44px] z-50 text-lg">
       {navItems.map(({ label, to }) => (
         <Link
           key={to}
