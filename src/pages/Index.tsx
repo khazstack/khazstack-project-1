@@ -31,7 +31,7 @@ const Index = () => {
   return (
     <div
       className={cn(
-        "relative h-dvh w-full bg-black text-white overflow-hidden",
+        "relative h-dvh w-full bg-black text-white overflow-hidden text-4xl",
         "transition-opacity duration-700",
         phase === "loading" ? "opacity-0" : "opacity-100"
       )}
