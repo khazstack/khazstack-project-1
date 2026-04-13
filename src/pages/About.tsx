@@ -1,6 +1,5 @@
 import TopNav from "@/components/TopNav";
-
-const portraitImg = "https://images.unsplash.com/photo-1766939228519-5f498be33e65?w=1600&q=80";
+import aboutHero from "@/assets/about-hero.jpeg";
 
 const About = () =>
 <main className="bg-black text-white min-h-screen" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
