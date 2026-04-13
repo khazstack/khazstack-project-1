@@ -17,7 +17,7 @@ const TopNav = () => {
           to={to}
           className="transition-opacity hover:opacity-80"
           style={{
-            fontSize: 13,
+            fontSize: 12,
             letterSpacing: "0.3em",
             textTransform: "uppercase" as const,
             color: pathname === to ? "#fff" : "rgba(255,255,255,0.4)",
