@@ -23,9 +23,9 @@ const Index = () => {
   const { phase, currentImageSrc, isIntroComplete, skipIntro } =
     useIntroSequence({
       introImages,
-      startDuration: 300,
-      endDuration: 40,
-      initialDelay: 100,
+      startDuration: 270,
+      endDuration: 36,
+      initialDelay: 90,
     })
 
   return (
