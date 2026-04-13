@@ -8,7 +8,7 @@ const About = () =>
     {/* Hero */}
     <section className="relative h-screen overflow-hidden">
       <img
-      src={portraitImg}
+      src={aboutHero}
       alt="Молдабаева Эльмира Абайевна"
       className="absolute inset-0 w-full h-full object-cover opacity-70" />
     
