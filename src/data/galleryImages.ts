@@ -1,81 +1,92 @@
 import type { MediaItem } from "@/components/ui/infinite-gallery"
 
-// Photos by @chriscreations__ on Unsplash
-// Aspect ratios estimated as portrait (3:4)
+import photo1 from "@/assets/photo1.jpeg"
+import photo2 from "@/assets/photo2.jpeg"
+import photo3 from "@/assets/photo3.jpeg"
+import photo4 from "@/assets/photo4.jpeg"
+import photo5 from "@/assets/photo5.jpeg"
+import photo6 from "@/assets/photo6.jpeg"
+import photo7 from "@/assets/photo7.jpeg"
+import photo8 from "@/assets/photo8.jpeg"
+import photo9 from "@/assets/photo9.jpeg"
+import photo10 from "@/assets/photo10.jpeg"
+
+// Portrait photos (3:4 aspect ratio)
+// Landscape photos (16:9 aspect ratio)
 export const galleryImages: MediaItem[] = [
   {
-    // Key photo - man in suit with hands on face (first in gallery, last in intro)
-    src: "https://images.unsplash.com/photo-1766939228519-5f498be33e65?w=1600&q=80",
+    src: photo1,
     width: 3,
     height: 4,
-    alt: "Man in suit with hands on face",
+    alt: "Портретное фото в белой блузке с чёрным цветком",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939229108-eeeebe838be1?w=1600&q=80",
+    src: photo2,
     width: 3,
     height: 4,
-    alt: "Young man in suit sitting against red background",
+    alt: "Портретное фото в ярком кимоно",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228707-d9b36da3ab06?w=1600&q=80",
-    width: 3,
-    height: 4,
-    alt: "Young man in suit with arms crossed looking forward",
+    src: photo3,
+    width: 16,
+    height: 9,
+    alt: "Фото сверху в кожаной куртке",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228800-930ab56f16f9?w=1600&q=80",
+    src: photo4,
     width: 3,
     height: 4,
-    alt: "Man in suit with patterned tie and rings",
+    alt: "Портретное фото за стулом в белом платье",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228418-1100778fb1fe?w=1600&q=80",
+    src: photo5,
     width: 3,
     height: 4,
-    alt: "Young man in suit with braided hair",
+    alt: "Портретное фото в жёлтом платье",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228746-c0acc10344e4?w=1600&q=80",
-    width: 3,
-    height: 4,
-    alt: "Man in a suit sits against a red background",
+    src: photo6,
+    width: 16,
+    height: 9,
+    alt: "Портретное фото в ярком кимоно с поднятыми руками",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228501-065717002601?w=1600&q=80",
-    width: 3,
-    height: 4,
-    alt: "Man with braided hair wearing a suit",
+    src: photo7,
+    width: 16,
+    height: 9,
+    alt: "Фото сверху в белой рубашке",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228554-77d3c914639a?w=1600&q=80",
-    width: 3,
-    height: 4,
-    alt: "Man with braided hair in a suit posing",
+    src: photo8,
+    width: 16,
+    height: 9,
+    alt: "Портретное фото за стулом крупный план",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228598-e8d73e87ec01?w=1600&q=80",
+    src: photo9,
     width: 3,
     height: 4,
-    alt: "Man in suit with braids and rings reaching forward",
+    alt: "Портретное фото в синем пальто с узором",
   },
   {
-    src: "https://images.unsplash.com/photo-1766939228669-999a8509630b?w=1600&q=80",
+    src: photo10,
     width: 3,
     height: 4,
-    alt: "Young man in suit covers eyes with hands",
+    alt: "Портретное фото в жёлтом платье крупный план",
   },
 ]
 
 // Images used during the intro sequence (cycling animation)
 // Final image matches first gallery image for seamless transition
 export const introImages: string[] = [
-  "https://images.unsplash.com/photo-1766939228707-d9b36da3ab06?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939228418-1100778fb1fe?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939228501-065717002601?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939228598-e8d73e87ec01?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939229108-eeeebe838be1?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939228746-c0acc10344e4?w=1600&q=80",
-  "https://images.unsplash.com/photo-1766939228669-999a8509630b?w=1600&q=80",
-  // Key photo - final intro image, first in gallery
-  "https://images.unsplash.com/photo-1766939228519-5f498be33e65?w=1600&q=80",
+  photo3,
+  photo6,
+  photo2,
+  photo9,
+  photo5,
+  photo7,
+  photo8,
+  photo10,
+  photo4,
+  photo1,
 ]
