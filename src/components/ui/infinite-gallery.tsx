@@ -33,11 +33,11 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 390
     const itemWidths = React.useMemo(
       () => items.map((item) => {
-        const naturalWidth = calculateWidth(item, viewportHeight)
-        if (isMobile && item.mobileObjectFit === "contain") {
-          return Math.min(naturalWidth, viewportWidth)
+        if (isMobile) {
+          // On mobile, each image takes full viewport width
+          return viewportWidth
         }
-        return naturalWidth
+        return calculateWidth(item, viewportHeight)
       }),
       [items, viewportHeight, isMobile, viewportWidth]
     )
