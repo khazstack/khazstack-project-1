@@ -10,7 +10,7 @@ const About = () =>
       <img
       src={aboutHero}
       alt="Молдабаева Эльмира Абайевна"
-      className="absolute inset-0 w-full h-full object-cover opacity-70" />
+      className="absolute inset-0 w-full h-full object-cover object-[center_20%] opacity-70" />
     
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       <div className="absolute bottom-16 left-0 right-0 text-center px-6">
