@@ -1,10 +1,13 @@
 import TopNav from "@/components/TopNav";
 import contactHero from "@/assets/contact-hero.jpeg";
 import { Instagram, Phone, Mail, Clapperboard } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Contact = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <main style={{ background: "#000", color: "#fff", fontFamily: "'Space Grotesk', monospace", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
+    <main style={{ background: "#000", color: "#fff", fontFamily: "'Space Grotesk', monospace", minHeight: "100vh", position: "relative", overflow: isMobile ? "auto" : "hidden" }}>
       <TopNav />
       
       {/* Hero image */}
@@ -12,39 +15,44 @@ const Contact = () => {
         src={contactHero}
         alt="Эльмира Молдабаева"
         style={{
-          position: "absolute",
-          inset: 0,
+          position: isMobile ? "relative" : "absolute",
+          inset: isMobile ? undefined : 0,
           width: "100%",
-          height: "100%",
+          height: isMobile ? "55vh" : "100%",
           objectFit: "cover",
           objectPosition: "center 20%",
+          display: "block",
         }}
       />
 
-      {/* Gradient overlay on the right */}
+      {/* Gradient overlay */}
       <div style={{
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
+        background: isMobile
+          ? "linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,1) 65%)"
+          : "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
         pointerEvents: "none",
+        height: isMobile ? "55vh" : "100%",
       }} />
 
-      {/* Contact info — right side */}
+      {/* Contact info */}
       <div style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        width: "42%",
+        position: isMobile ? "relative" : "absolute",
+        top: isMobile ? undefined : 0,
+        right: isMobile ? undefined : 0,
+        bottom: isMobile ? undefined : 0,
+        width: isMobile ? "100%" : "42%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        padding: "60px 48px 60px 32px",
+        justifyContent: isMobile ? "flex-start" : "center",
+        padding: isMobile ? "0 28px 48px" : "60px 48px 60px 32px",
+        marginTop: isMobile ? "-60px" : undefined,
         zIndex: 10,
       }}>
         {/* Name */}
         <h1 style={{
-          fontSize: 28,
+          fontSize: isMobile ? 24 : 28,
           fontWeight: 300,
           letterSpacing: "0.25em",
           textTransform: "uppercase",
@@ -54,20 +62,20 @@ const Contact = () => {
           ЭЛЬМИРА<br />МОЛДАБАЕВА
         </h1>
         <p style={{
-          fontSize: 11,
+          fontSize: isMobile ? 10 : 11,
           letterSpacing: "0.35em",
           textTransform: "uppercase",
           color: "rgba(255,255,255,0.45)",
-          marginBottom: 40,
+          marginBottom: isMobile ? 28 : 40,
         }}>
           модель · актриса · лицо
         </p>
 
         {/* Divider */}
-        <div style={{ width: 40, height: 1, background: "rgba(255,255,255,0.2)", marginBottom: 36 }} />
+        <div style={{ width: 40, height: 1, background: "rgba(255,255,255,0.2)", marginBottom: isMobile ? 24 : 36 }} />
 
         {/* Instagram */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: isMobile ? 22 : 28 }}>
           <Instagram size={16} style={{ marginTop: 2, opacity: 0.5, flexShrink: 0 }} />
           <div>
             <p style={{ fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>
@@ -77,9 +85,7 @@ const Contact = () => {
               href="https://instagram.com/elmira.mold"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none", transition: "color 0.3s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+              style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none" }}
             >
               instagram.com/elmira.mold
             </a>
@@ -90,7 +96,7 @@ const Contact = () => {
         </div>
 
         {/* Phone */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: isMobile ? 22 : 28 }}>
           <Phone size={16} style={{ marginTop: 2, opacity: 0.5, flexShrink: 0 }} />
           <div>
             <p style={{ fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>
@@ -108,7 +114,7 @@ const Contact = () => {
         </div>
 
         {/* Email */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 36 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: isMobile ? 28 : 36 }}>
           <Mail size={16} style={{ marginTop: 2, opacity: 0.5, flexShrink: 0 }} />
           <div>
             <p style={{ fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>
@@ -116,9 +122,7 @@ const Contact = () => {
             </p>
             <a
               href="mailto:1109ely@mail.ru"
-              style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none", transition: "color 0.3s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+              style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none" }}
             >
               1109ely@mail.ru
             </a>
@@ -126,7 +130,7 @@ const Contact = () => {
         </div>
 
         {/* Divider */}
-        <div style={{ width: 40, height: 1, background: "rgba(255,255,255,0.2)", marginBottom: 28 }} />
+        <div style={{ width: 40, height: 1, background: "rgba(255,255,255,0.2)", marginBottom: isMobile ? 20 : 28 }} />
 
         {/* Quote */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
