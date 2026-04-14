@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TopNav from "@/components/TopNav";
+import contactHero from "@/assets/contact-hero.jpeg";
 
 const contacts = [
 { label: "Букинг", value: "bookings@gentleman.live", href: "mailto:bookings@gentleman.live" },
