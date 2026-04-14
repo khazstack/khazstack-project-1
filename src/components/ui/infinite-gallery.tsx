@@ -6,6 +6,8 @@ export interface MediaItem {
   width: number
   height: number
   alt?: string
+  mobileObjectFit?: string
+  mobileObjectPosition?: string
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
