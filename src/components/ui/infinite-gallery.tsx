@@ -1,11 +1,14 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export interface MediaItem {
   src: string
   width: number
   height: number
   alt?: string
+  mobileObjectFit?: string
+  mobileObjectPosition?: string
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,6 +22,7 @@ function calculateWidth(item: MediaItem, viewportHeight: number): number {
 
 const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
   ({ className, items, enabled = true, ...props }, ref) => {
+    const isMobile = useIsMobile()
     const scrollRef = React.useRef<HTMLDivElement>(null)
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
@@ -26,9 +30,16 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
     // Calculate widths for all items
+    const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 390
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () => items.map((item) => {
+        if (isMobile) {
+          // On mobile, each image takes full viewport width
+          return viewportWidth
+        }
+        return calculateWidth(item, viewportHeight)
+      }),
+      [items, viewportHeight, isMobile, viewportWidth]
     )
 
     // Cumulative positions for each item
@@ -128,7 +139,8 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
           className={cn(
             "h-full overflow-x-auto overflow-y-hidden",
             "scrollbar-none [&::-webkit-scrollbar]:hidden",
-            "[-ms-overflow-style:none] [scrollbar-width:none]"
+            "[-ms-overflow-style:none] [scrollbar-width:none]",
+            isMobile && "snap-x snap-mandatory"
           )}
           style={{ contain: "strict" }}
         >
@@ -139,13 +151,19 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0"
+                className={cn("relative h-full flex-shrink-0", isMobile && "snap-center")}
                 style={{ width }}
               >
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover"
+                  className={cn(
+                    "h-full w-full",
+                    isMobile && item.mobileObjectFit === "contain" ? "object-contain bg-black" : "object-cover"
+                  )}
+                  style={isMobile && item.mobileObjectPosition ? {
+                    objectPosition: item.mobileObjectPosition,
+                  } : undefined}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
