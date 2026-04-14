@@ -19,14 +19,12 @@ export const galleryImages: MediaItem[] = [
     width: 3,
     height: 4,
     alt: "Портретное фото в белой блузке с чёрным цветком",
-    mobileObjectFit: "contain",
   },
   {
     src: photo2,
     width: 3,
     height: 4,
     alt: "Портретное фото в ярком кимоно",
-    mobileObjectPosition: "center 30%",
   },
   {
     src: photo3,
@@ -69,7 +67,6 @@ export const galleryImages: MediaItem[] = [
     width: 3,
     height: 4,
     alt: "Портретное фото в синем пальто с узором",
-    mobileObjectPosition: "center 30%",
   },
   {
     src: photo10,
