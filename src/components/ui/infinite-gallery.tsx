@@ -30,9 +30,16 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
     // Calculate widths for all items
+    const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 390
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () => items.map((item) => {
+        const naturalWidth = calculateWidth(item, viewportHeight)
+        if (isMobile && item.mobileObjectFit === "contain") {
+          return Math.min(naturalWidth, viewportWidth)
+        }
+        return naturalWidth
+      }),
+      [items, viewportHeight, isMobile, viewportWidth]
     )
 
     // Cumulative positions for each item
