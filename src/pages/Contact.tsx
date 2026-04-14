@@ -50,12 +50,20 @@ const HoverRow = ({ children, style, onClick }: {children: React.ReactNode;style
 
 const Contact = () => {
   return (
-    <main style={{ background: "#000", color: "#fff", fontFamily: "'Space Grotesk', monospace", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <main style={{ background: "#000", color: "#fff", fontFamily: "'Space Grotesk', monospace", minHeight: "100vh", position: "relative" }}>
       <TopNav />
-      <div style={{ flex: 1 }} />
-      
-
-      
+      <img
+        src={contactHero}
+        alt="Эльмира Молдабаева"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center 20%",
+        }}
+      />
     </main>);
 
 };
