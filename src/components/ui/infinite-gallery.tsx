@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export interface MediaItem {
   src: string
@@ -148,6 +149,10 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   src={item.src}
                   alt={item.alt ?? ""}
                   className="h-full w-full object-cover"
+                  style={isMobile ? {
+                    objectFit: (item.mobileObjectFit as any) || 'cover',
+                    objectPosition: item.mobileObjectPosition || 'center center',
+                  } : undefined}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
