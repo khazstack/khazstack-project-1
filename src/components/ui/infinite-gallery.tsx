@@ -139,7 +139,8 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
           className={cn(
             "h-full overflow-x-auto overflow-y-hidden",
             "scrollbar-none [&::-webkit-scrollbar]:hidden",
-            "[-ms-overflow-style:none] [scrollbar-width:none]"
+            "[-ms-overflow-style:none] [scrollbar-width:none]",
+            isMobile && "snap-x snap-mandatory"
           )}
           style={{ contain: "strict" }}
         >
@@ -150,7 +151,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0"
+                className={cn("relative h-full flex-shrink-0", isMobile && "snap-center")}
                 style={{ width }}
               >
                 <img
