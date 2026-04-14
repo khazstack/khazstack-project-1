@@ -19,7 +19,7 @@ export const galleryImages: MediaItem[] = [
     width: 3,
     height: 4,
     alt: "Портретное фото в белой блузке с чёрным цветком",
-    mobileObjectPosition: "center 15%",
+    mobileObjectFit: "contain",
   },
   {
     src: photo2,
