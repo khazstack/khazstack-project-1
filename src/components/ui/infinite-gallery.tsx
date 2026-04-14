@@ -149,10 +149,12 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover"
-                  style={isMobile ? {
-                    objectFit: (item.mobileObjectFit as any) || 'cover',
-                    objectPosition: item.mobileObjectPosition || 'center center',
+                  className={cn(
+                    "h-full w-full",
+                    isMobile && item.mobileObjectFit === "contain" ? "object-contain bg-black" : "object-cover"
+                  )}
+                  style={isMobile && item.mobileObjectPosition ? {
+                    objectPosition: item.mobileObjectPosition,
                   } : undefined}
                   loading="lazy"
                   decoding="async"
