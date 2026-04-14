@@ -22,6 +22,7 @@ function calculateWidth(item: MediaItem, viewportHeight: number): number {
 
 const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
   ({ className, items, enabled = true, ...props }, ref) => {
+    const isMobile = useIsMobile()
     const scrollRef = React.useRef<HTMLDivElement>(null)
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
