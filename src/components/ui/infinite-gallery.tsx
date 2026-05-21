@@ -23,13 +23,23 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
     )
+    const [viewportWidth, setViewportWidth] = React.useState(
+      typeof window !== "undefined" ? window.innerWidth : 1200
+    )
+    const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
     // Calculate widths for all items
+    // On mobile: each slide takes full viewport width (object-contain shows whole photo)
+    // On desktop: width is derived from viewport height × aspect ratio
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () =>
+        items.map((item) =>
+          isMobile ? viewportWidth : calculateWidth(item, viewportHeight)
+        ),
+      [items, viewportHeight, viewportWidth, isMobile]
     )
+
 
     // Cumulative positions for each item
     const itemPositions = React.useMemo(() => {
