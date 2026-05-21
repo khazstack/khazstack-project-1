@@ -68,7 +68,6 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
       return () => window.removeEventListener("resize", onResize)
     }, [])
 
-    }, [])
 
     // Initialize scroll position to middle and handle infinite loop + page tracking
     React.useEffect(() => {
