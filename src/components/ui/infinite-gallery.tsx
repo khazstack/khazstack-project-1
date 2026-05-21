@@ -145,7 +145,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain md:object-cover bg-black"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
