@@ -23,13 +23,23 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
     )
+    const [viewportWidth, setViewportWidth] = React.useState(
+      typeof window !== "undefined" ? window.innerWidth : 1200
+    )
+    const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
     // Calculate widths for all items
+    // On mobile: each slide takes full viewport width (object-contain shows whole photo)
+    // On desktop: width is derived from viewport height × aspect ratio
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () =>
+        items.map((item) =>
+          isMobile ? viewportWidth : calculateWidth(item, viewportHeight)
+        ),
+      [items, viewportHeight, viewportWidth, isMobile]
     )
+
 
     // Cumulative positions for each item
     const itemPositions = React.useMemo(() => {
@@ -48,13 +58,16 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
 
     // Number of times to repeat for seamless infinite scroll
     const repeatCount = 50
-
     // Handle resize
     React.useEffect(() => {
-      const onResize = () => setViewportHeight(window.innerHeight)
+      const onResize = () => {
+        setViewportHeight(window.innerHeight)
+        setViewportWidth(window.innerWidth)
+      }
       window.addEventListener("resize", onResize)
       return () => window.removeEventListener("resize", onResize)
     }, [])
+
 
     // Initialize scroll position to middle and handle infinite loop + page tracking
     React.useEffect(() => {
@@ -145,7 +158,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain md:object-cover bg-black"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
