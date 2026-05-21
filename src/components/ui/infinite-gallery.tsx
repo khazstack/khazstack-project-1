@@ -58,12 +58,16 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
 
     // Number of times to repeat for seamless infinite scroll
     const repeatCount = 50
-
     // Handle resize
     React.useEffect(() => {
-      const onResize = () => setViewportHeight(window.innerHeight)
+      const onResize = () => {
+        setViewportHeight(window.innerHeight)
+        setViewportWidth(window.innerWidth)
+      }
       window.addEventListener("resize", onResize)
       return () => window.removeEventListener("resize", onResize)
+    }, [])
+
     }, [])
 
     // Initialize scroll position to middle and handle infinite loop + page tracking
