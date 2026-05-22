@@ -18,10 +18,12 @@ const Contact = () => {
           position: isMobile ? "relative" : "absolute",
           inset: isMobile ? undefined : 0,
           width: "100%",
-          height: isMobile ? "55vh" : "100%",
-          objectFit: "cover",
+          height: isMobile ? "auto" : "100%",
+          maxHeight: isMobile ? "70vh" : undefined,
+          objectFit: isMobile ? "contain" : "cover",
           objectPosition: "center 20%",
           display: "block",
+          background: "#000",
         }}
       />
 
@@ -30,10 +32,10 @@ const Contact = () => {
         position: "absolute",
         inset: 0,
         background: isMobile
-          ? "linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,1) 65%)"
+          ? "none"
           : "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
         pointerEvents: "none",
-        height: isMobile ? "55vh" : "100%",
+        height: isMobile ? 0 : "100%",
       }} />
 
       {/* Contact info */}
@@ -47,7 +49,7 @@ const Contact = () => {
         flexDirection: "column",
         justifyContent: isMobile ? "flex-start" : "center",
         padding: isMobile ? "0 28px 48px" : "60px 48px 60px 32px",
-        marginTop: isMobile ? "-60px" : undefined,
+        marginTop: isMobile ? 24 : undefined,
         zIndex: 10,
       }}>
         {/* Name */}
