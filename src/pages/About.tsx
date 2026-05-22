@@ -6,18 +6,25 @@ const About = () =>
     <TopNav />
 
     {/* Hero */}
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative md:h-screen overflow-hidden">
       <img
-      src={aboutHero}
-      alt="Молдабаева Эльмира Абайевна"
-      className="absolute inset-0 w-full h-full object-cover object-[center_20%] opacity-70" />
+        src={aboutHero}
+        alt="Молдабаева Эльмира Абайевна"
+        className="block w-full h-auto max-h-[85vh] object-contain object-[center_20%] bg-black md:absolute md:inset-0 md:h-full md:max-h-none md:object-cover md:opacity-70"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+        }}
+      />
     
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-      <div className="absolute bottom-16 left-0 right-0 text-center px-6">
-        <h1 className="text-5xl md:text-8xl font-extrabold tracking-tight uppercase mb-4">
+      <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      <div className="relative md:absolute md:bottom-16 md:left-0 md:right-0 text-center px-6 -mt-16 md:mt-0 pb-8 md:pb-0">
+        <h1 className="text-4xl md:text-8xl font-extrabold tracking-tight uppercase mb-4">
           Эльмира Молдабаева
         </h1>
-        <p className="text-lg md:text-2xl font-light tracking-[0.3em] uppercase text-white/70">
+        <p className="text-base md:text-2xl font-light tracking-[0.3em] uppercase text-white/70">
           АКТРИСА МОДЕЛЬ ЛИЦО
         </p>
       </div>
