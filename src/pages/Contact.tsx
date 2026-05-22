@@ -68,7 +68,7 @@ const Contact = () => {
         flexDirection: "column",
         justifyContent: isMobile ? "flex-start" : "center",
         padding: isMobile ? "0 28px 48px" : "60px 48px 60px 32px",
-        marginTop: isMobile ? -80 : undefined,
+        marginTop: isMobile ? 0 : undefined,
         zIndex: 10,
       }}>
         {/* Name */}
