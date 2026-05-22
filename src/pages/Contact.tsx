@@ -32,10 +32,10 @@ const Contact = () => {
         position: "absolute",
         inset: 0,
         background: isMobile
-          ? "linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,1) 65%)"
+          ? "none"
           : "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
         pointerEvents: "none",
-        height: isMobile ? "55vh" : "100%",
+        height: isMobile ? 0 : "100%",
       }} />
 
       {/* Contact info */}
