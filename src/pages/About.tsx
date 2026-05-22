@@ -25,7 +25,7 @@ const About = () =>
           Эльмира Молдабаева
         </h1>
         <p className="text-base md:text-2xl font-light tracking-[0.3em] uppercase text-white/70">
-          АКТРИСА МОДЕЛЬ ЛИЦО
+          АКТРИСА — МОДЕЛЬ — ЛИЦО
         </p>
       </div>
     </section>
