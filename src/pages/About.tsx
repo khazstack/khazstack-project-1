@@ -32,7 +32,7 @@ const About = () =>
 
     {/* Bio */}
     <section className="max-w-4xl mx-auto px-6 md:px-16 py-16 md:py-24">
-      <p className="text-base md:text-lg leading-[1.9] text-white/80">
+      <p className="text-base md:text-lg leading-[1.9] text-white/80 text-center">
         Я актриса с опытом участия в полнометражных фильмах, сериалах, рекламных роликах и телевизионных шоу. Обладаю уверенным присутствием в кадре, эмоциональной пластикой и навыками импровизации. Работаю на казахском и русском языках. Открыта для сотрудничества в кино, сериалах, рекламе, клипах, телепроектах и live-стриминге.
       </p>
     </section>
@@ -198,14 +198,14 @@ const About = () =>
           <h3 className="text-sm md:text-base uppercase tracking-[0.2em] text-white/50 font-semibold mb-5">
             Live-стриминг / Прямые эфиры
           </h3>
-          <ul className="space-y-3 pl-1">
+          <ul className="space-y-3 pl-1 text-center">
             {[
               "Опыт ведения прямых эфиров (TikTok, продажи, презентации)",
               "Удержание внимания аудитории",
               "Работа с камерой и импровизация",
               "Презентация продукта в реальном времени",
             ].map((item) =>
-              <li key={item} className="text-base md:text-lg font-medium flex items-center gap-3">
+              <li key={item} className="text-base md:text-lg font-medium flex items-center justify-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-white/40 shrink-0" />
                 {item}
               </li>
