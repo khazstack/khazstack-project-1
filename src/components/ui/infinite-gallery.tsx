@@ -158,7 +158,10 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-contain md:object-cover bg-black"
+                  className={cn(
+                    "h-full w-full bg-black md:object-cover",
+                    item.width > item.height ? "object-cover" : "object-contain"
+                  )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
