@@ -24,7 +24,7 @@ const About = () =>
         <h1 className="text-4xl md:text-8xl font-extrabold tracking-tight uppercase mb-4">
           Эльмира Молдабаева
         </h1>
-        <p className="text-base md:text-2xl font-light tracking-[0.3em] uppercase text-white/70">
+        <p className="text-[11px] md:text-2xl font-light tracking-[0.2em] md:tracking-[0.3em] uppercase text-white/70 whitespace-nowrap">
           АКТРИСА — МОДЕЛЬ — ЛИЦО
         </p>
       </div>
