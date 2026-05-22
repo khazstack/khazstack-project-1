@@ -198,7 +198,7 @@ const About = () =>
           <h3 className="text-sm md:text-base uppercase tracking-[0.2em] text-white/50 font-semibold mb-5">
             Live-стриминг / Прямые эфиры
           </h3>
-          <ul className="space-y-3 pl-1">
+          <ul className="space-y-3 pl-1 text-center">
             {[
               "Опыт ведения прямых эфиров (TikTok, продажи, презентации)",
               "Удержание внимания аудитории",
