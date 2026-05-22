@@ -205,7 +205,7 @@ const About = () =>
               "Работа с камерой и импровизация",
               "Презентация продукта в реальном времени",
             ].map((item) =>
-              <li key={item} className="text-base md:text-lg font-medium flex items-center gap-3">
+              <li key={item} className="text-base md:text-lg font-medium flex items-center justify-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-white/40 shrink-0" />
                 {item}
               </li>
