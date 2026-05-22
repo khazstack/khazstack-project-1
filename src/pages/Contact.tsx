@@ -11,32 +11,51 @@ const Contact = () => {
       <TopNav />
       
       {/* Hero image */}
-      <img
-        src={contactHero}
-        alt="Эльмира Молдабаева"
-        style={{
-          position: isMobile ? "relative" : "absolute",
-          inset: isMobile ? undefined : 0,
-          width: "100%",
-          height: isMobile ? "auto" : "100%",
-          maxHeight: isMobile ? "70vh" : undefined,
-          objectFit: isMobile ? "contain" : "cover",
-          objectPosition: "center 20%",
-          display: "block",
-          background: "#000",
-        }}
-      />
+      {isMobile ? (
+        <div style={{ position: "relative", width: "100%" }}>
+          <img
+            src={contactHero}
+            alt="Эльмира Молдабаева"
+            style={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "75vh",
+              objectFit: "contain",
+              objectPosition: "center 20%",
+              display: "block",
+              background: "#000",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+            }}
+          />
+        </div>
+      ) : (
+        <img
+          src={contactHero}
+          alt="Эльмира Молдабаева"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 20%",
+            display: "block",
+          }}
+        />
+      )}
 
-      {/* Gradient overlay */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: isMobile
-          ? "none"
-          : "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
-        pointerEvents: "none",
-        height: isMobile ? 0 : "100%",
-      }} />
+      {/* Gradient overlay (desktop only) */}
+      {!isMobile && (
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.92) 100%)",
+          pointerEvents: "none",
+        }} />
+      )}
 
       {/* Contact info */}
       <div style={{
@@ -49,7 +68,7 @@ const Contact = () => {
         flexDirection: "column",
         justifyContent: isMobile ? "flex-start" : "center",
         padding: isMobile ? "0 28px 48px" : "60px 48px 60px 32px",
-        marginTop: isMobile ? 24 : undefined,
+        marginTop: isMobile ? -80 : undefined,
         zIndex: 10,
       }}>
         {/* Name */}
