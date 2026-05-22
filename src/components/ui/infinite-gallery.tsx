@@ -34,12 +34,9 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     // On desktop: width is derived from viewport height × aspect ratio
     const itemWidths = React.useMemo(
       () =>
-        items.map((item) => {
-          if (isMobile) return viewportWidth
-          // Landscape photos fill full viewport width, cropped to cover
-          if (item.width > item.height) return viewportWidth
-          return calculateWidth(item, viewportHeight)
-        }),
+        items.map((item) =>
+          isMobile ? viewportWidth : calculateWidth(item, viewportHeight)
+        ),
       [items, viewportHeight, viewportWidth, isMobile]
     )
 
