@@ -18,10 +18,12 @@ const Contact = () => {
           position: isMobile ? "relative" : "absolute",
           inset: isMobile ? undefined : 0,
           width: "100%",
-          height: isMobile ? "55vh" : "100%",
-          objectFit: "cover",
+          height: isMobile ? "auto" : "100%",
+          maxHeight: isMobile ? "70vh" : undefined,
+          objectFit: isMobile ? "contain" : "cover",
           objectPosition: "center 20%",
           display: "block",
+          background: "#000",
         }}
       />
 
