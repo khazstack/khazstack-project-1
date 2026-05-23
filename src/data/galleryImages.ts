@@ -15,7 +15,7 @@ import photo10 from "@/assets/photo10.jpeg"
 // Portrait photos (3:4 aspect ratio)
 // Landscape photos (16:9 aspect ratio)
 export const galleryImages: MediaItem[] = [
-  { src: photo1, width: 3, height: 4, alt: "Фото 1" },
+  { src: photo1, width: 3, height: 4, alt: "Фото 1", mobileFit: "contain" },
   { src: photo2, width: 3, height: 4, alt: "Фото 2" },
   { src: photo3, width: 3, height: 4, alt: "Фото 3" },
   { src: photo4, width: 16, height: 9, alt: "Фото 4", mobileFit: "contain" },
