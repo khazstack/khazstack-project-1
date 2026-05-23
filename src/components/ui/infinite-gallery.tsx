@@ -148,14 +148,25 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0"
+                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
                 style={{ width }}
               >
+                {item.mobileFit === "contain" && (
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                )}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
                   className={cn(
-                    "h-full w-full bg-black",
+                    "relative h-full w-full",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
                   loading="lazy"
