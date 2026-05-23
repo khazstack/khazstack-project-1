@@ -25,7 +25,6 @@ export const galleryImages: MediaItem[] = [
   { src: photo8, width: 3, height: 4, alt: "Фото 8" },
   { src: photo9, width: 16, height: 9, alt: "Фото 9", mobileFit: "contain" },
   { src: photo10, width: 16, height: 9, alt: "Фото 10", mobileFit: "contain" },
-  { src: photo11, width: 16, height: 9, alt: "Фото 11", mobileFit: "contain" },
 ]
 
 // Images used during the intro sequence (cycling animation)
