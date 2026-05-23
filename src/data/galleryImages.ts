@@ -39,5 +39,4 @@ export const introImages: string[] = [
   photo10,
   photo4,
   photo1,
-  photo11,
 ]
