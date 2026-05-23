@@ -27,18 +27,13 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [viewportWidth, setViewportWidth] = React.useState(
       typeof window !== "undefined" ? window.innerWidth : 1200
     )
-    const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // Calculate widths for all items
-    // On mobile: each slide takes full viewport width (object-contain shows whole photo)
-    // On desktop: width is derived from viewport height × aspect ratio
+    // Calculate widths for all items based on viewport height × aspect ratio
+    // Same proportional sizing on mobile and desktop
     const itemWidths = React.useMemo(
-      () =>
-        items.map((item) =>
-          isMobile ? viewportWidth : calculateWidth(item, viewportHeight)
-        ),
-      [items, viewportHeight, viewportWidth, isMobile]
+      () => items.map((item) => calculateWidth(item, viewportHeight)),
+      [items, viewportHeight]
     )
 
 
@@ -159,12 +154,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className={cn(
-                    "h-full w-full bg-black",
-                    isMobile && item.mobileFit === "contain"
-                      ? "object-contain"
-                      : "object-cover"
-                  )}
+                  className="h-full w-full bg-black object-cover"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
