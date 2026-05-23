@@ -10,7 +10,7 @@ import photo7 from "@/assets/photo7.jpeg"
 import photo8 from "@/assets/photo8.jpeg"
 import photo9 from "@/assets/photo9.jpeg"
 import photo10 from "@/assets/photo10.jpeg"
-import photo11 from "@/assets/photo11.jpeg"
+
 
 // Portrait photos (3:4 aspect ratio)
 // Landscape photos (16:9 aspect ratio)
