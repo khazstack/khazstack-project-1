@@ -6,6 +6,7 @@ import photo3 from "@/assets/photo3.jpeg"
 import photo4 from "@/assets/photo4.jpeg"
 import photo5 from "@/assets/photo5.jpeg"
 import photo6 from "@/assets/photo6.jpeg"
+import photo6b from "@/assets/photo6b.jpeg"
 import photo7 from "@/assets/photo7.jpeg"
 import photo8 from "@/assets/photo8.jpeg"
 import photo9 from "@/assets/photo9.jpeg"
@@ -21,6 +22,7 @@ export const galleryImages: MediaItem[] = [
   { src: photo4, width: 16, height: 9, alt: "Фото 4", mobileFit: "contain" },
   { src: photo5, width: 16, height: 9, alt: "Фото 5", mobileFit: "contain" },
   { src: photo6, width: 3, height: 4, alt: "Фото 6", mobileFit: "contain" },
+  { src: photo6b, width: 3, height: 4, alt: "Фото 6b", mobileFit: "contain" },
   { src: photo7, width: 3, height: 4, alt: "Фото 7", mobileFit: "contain" },
   { src: photo8, width: 16, height: 9, alt: "Фото 8", mobileFit: "contain" },
   { src: photo9, width: 16, height: 9, alt: "Фото 9", mobileFit: "contain" },
