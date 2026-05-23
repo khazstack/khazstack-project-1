@@ -6,7 +6,7 @@ export interface MediaItem {
   width: number
   height: number
   alt?: string
-  mobileFit?: "cover" | "contain" | "fill"
+  mobileFit?: "cover" | "contain"
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -161,9 +161,9 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   alt={item.alt ?? ""}
                   className={cn(
                     "h-full w-full bg-black",
-                    isMobile && item.mobileFit === "contain" && "object-contain",
-                    isMobile && item.mobileFit === "fill" && "object-fill",
-                    (!isMobile || !item.mobileFit || item.mobileFit === "cover") && "object-cover"
+                    isMobile && item.mobileFit === "contain"
+                      ? "object-contain"
+                      : "object-cover"
                   )}
                   loading="lazy"
                   decoding="async"
