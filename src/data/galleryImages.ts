@@ -10,8 +10,6 @@ import photo7 from "@/assets/photo7.jpeg"
 import photo8 from "@/assets/photo8.jpeg"
 import photo9 from "@/assets/photo9.jpeg"
 import photo10 from "@/assets/photo10.jpeg"
-import photo11 from "@/assets/photo11.jpeg"
-import photo12 from "@/assets/photo12.jpeg"
 
 // Portrait photos (3:4 aspect ratio)
 // Landscape photos (16:9 aspect ratio)
@@ -26,12 +24,9 @@ export const galleryImages: MediaItem[] = [
   { src: photo8, width: 3, height: 4, alt: "Фото 8" },
   { src: photo9, width: 16, height: 9, alt: "Фото 9" },
   { src: photo10, width: 16, height: 9, alt: "Фото 10" },
-  { src: photo11, width: 16, height: 9, alt: "Фото 11" },
-  { src: photo12, width: 16, height: 9, alt: "Фото 12" },
 ]
 
 // Images used during the intro sequence (cycling animation)
-// Final image matches first gallery image for seamless transition
 export const introImages: string[] = [
   photo3,
   photo6,
@@ -41,9 +36,6 @@ export const introImages: string[] = [
   photo7,
   photo8,
   photo10,
-  photo11,
-  photo12,
   photo4,
   photo1,
 ]
-
