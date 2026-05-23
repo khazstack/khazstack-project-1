@@ -22,7 +22,7 @@ export const galleryImages: MediaItem[] = [
   { src: photo5, width: 16, height: 9, alt: "Фото 5", mobileFit: "contain" },
   { src: photo6, width: 3, height: 4, alt: "Фото 6" },
   { src: photo7, width: 3, height: 4, alt: "Фото 7" },
-  { src: photo8, width: 3, height: 4, alt: "Фото 8" },
+  { src: photo8, width: 16, height: 9, alt: "Фото 8", mobileFit: "contain" },
   { src: photo9, width: 16, height: 9, alt: "Фото 9", mobileFit: "contain" },
   { src: photo10, width: 16, height: 9, alt: "Фото 10", mobileFit: "contain" },
 ]
