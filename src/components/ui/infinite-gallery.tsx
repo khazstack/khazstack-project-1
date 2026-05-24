@@ -151,15 +151,17 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 className="relative h-full flex-shrink-0 overflow-hidden bg-black"
                 style={{ width }}
               >
-                <img
-                  src={item.src}
-                  alt=""
-                  aria-hidden
-                  className="absolute inset-0 h-full w-full object-cover scale-125 blur-3xl opacity-50"
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
+                {item.mobileFit === "contain" && (
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                )}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
@@ -167,12 +169,6 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                     "relative h-full w-full",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
-                  style={{
-                    WebkitMaskImage:
-                      "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
-                    maskImage:
-                      "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
-                  }}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
