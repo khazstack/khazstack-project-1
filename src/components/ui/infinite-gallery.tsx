@@ -151,24 +151,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 className="relative h-full flex-shrink-0 overflow-hidden bg-black"
                 style={{ width }}
               >
-                {/* Blurred edge halo */}
+                {/* Blurred backdrop fills the entire slide — no black showing */}
                 <img
                   src={item.src}
                   alt=""
                   aria-hidden
-                  className={cn(
-                    "pointer-events-none absolute inset-0 h-full w-full blur-2xl scale-110 opacity-80",
-                    item.mobileFit === "contain" ? "object-contain" : "object-cover"
-                  )}
+                  className="pointer-events-none absolute -inset-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)] object-cover blur-3xl scale-125 opacity-100 saturate-125"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  style={{
-                    WebkitMaskImage:
-                      "linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%)",
-                    maskImage:
-                      "linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%)",
-                  }}
                 />
                 {/* Main image with soft edge fade */}
                 <img
