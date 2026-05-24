@@ -148,30 +148,44 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
+                className="group relative h-full flex-shrink-0 overflow-hidden bg-neutral-950"
                 style={{ width }}
               >
-                {item.mobileFit === "contain" && (
-                  <img
-                    src={item.src}
-                    alt=""
-                    aria-hidden
-                    className="absolute -inset-8 h-[calc(100%+4rem)] w-[calc(100%+4rem)] object-cover scale-125 blur-3xl opacity-100"
-                    loading="lazy"
-                    decoding="async"
-                    draggable={false}
-                  />
-                )}
+                {/* Ambient blurred backdrop — fills gaps with image color */}
+                <img
+                  src={item.src}
+                  alt=""
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-16 h-[calc(100%+8rem)] w-[calc(100%+8rem)] object-cover scale-150 blur-3xl opacity-90 saturate-150"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+                {/* Soft vignette to deepen ambience */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)]"
+                />
+                {/* Main image */}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
                   className={cn(
-                    "relative h-full w-full",
+                    "relative h-full w-full drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
+                />
+                {/* Edge feathering — blends seamlessly with neighbors */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/40 to-transparent mix-blend-multiply"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/40 to-transparent mix-blend-multiply"
                 />
               </div>
             ))}
