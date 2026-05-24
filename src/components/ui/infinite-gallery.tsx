@@ -156,7 +156,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                     src={item.src}
                     alt=""
                     aria-hidden
-                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
+                    className="absolute -inset-8 h-[calc(100%+4rem)] w-[calc(100%+4rem)] object-cover scale-125 blur-3xl opacity-100"
                     loading="lazy"
                     decoding="async"
                     draggable={false}
