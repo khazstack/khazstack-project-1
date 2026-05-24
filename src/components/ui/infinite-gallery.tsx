@@ -29,12 +29,13 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // Each slide takes the full viewport width; photos use object-contain to
-    // show the entire image without cropping.
+    // Each slide is sized to the photo's natural aspect ratio at full viewport
+    // height, so photos sit edge-to-edge with no black gaps.
     const itemWidths = React.useMemo(
-      () => items.map(() => viewportWidth),
-      [items, viewportWidth]
+      () => items.map((item) => calculateWidth(item, viewportHeight)),
+      [items, viewportHeight]
     )
+
 
 
 
