@@ -29,19 +29,13 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // Calculate widths for all items
-    // On mobile: each slide takes full viewport width (object-contain shows whole photo)
-    // On desktop: width is derived from viewport height × aspect ratio
+    // Each slide takes the full viewport width; photos use object-contain to
+    // show the entire image without cropping.
     const itemWidths = React.useMemo(
-      () =>
-        items.map((item) => {
-          if (isMobile) return viewportWidth
-          // Landscape photos fill full viewport width, cropped to cover
-          if (item.width > item.height) return viewportWidth
-          return calculateWidth(item, viewportHeight)
-        }),
-      [items, viewportHeight, viewportWidth, isMobile]
+      () => items.map(() => viewportWidth),
+      [items, viewportWidth]
     )
+
 
 
     // Cumulative positions for each item
@@ -161,10 +155,8 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className={cn(
-                    "h-full w-full bg-black md:object-cover",
-                    item.width > item.height ? "object-cover" : "object-contain"
-                  )}
+                  className="h-full w-full bg-black object-contain"
+
                   loading="lazy"
                   decoding="async"
                   draggable={false}
