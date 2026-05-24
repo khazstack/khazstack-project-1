@@ -148,39 +148,25 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0 overflow-hidden"
+                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
                 style={{ width }}
               >
-                {/* Ambient blurred backdrop — fills gaps with image color */}
-                <img
-                  src={item.src}
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute -inset-20 h-[calc(100%+10rem)] w-[calc(100%+10rem)] object-cover scale-150 blur-[80px] opacity-100 saturate-125"
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
-                {/* Main image */}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
                   className={cn(
-                    "relative h-full w-full drop-shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
+                    "relative h-full w-full",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                />
-                {/* Soft feather mask on image edges — diffuses into ambient backdrop */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/30 to-transparent"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/30 to-transparent"
+                  style={{
+                    WebkitMaskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+                    maskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+                  }}
                 />
               </div>
             ))}
