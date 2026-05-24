@@ -148,7 +148,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
+                className="relative h-full flex-shrink-0 bg-black"
                 style={{ width }}
               >
                 {/* Blurred backdrop fills the entire slide — no black showing */}
