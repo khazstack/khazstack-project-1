@@ -151,15 +151,20 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 className="relative h-full flex-shrink-0 overflow-hidden"
                 style={{ width }}
               >
-                {/* Ambient blurred backdrop — fills gaps with image color */}
+                {/* Ambient blurred backdrop — fills gaps with darkened image color */}
                 <img
                   src={item.src}
                   alt=""
                   aria-hidden
-                  className="pointer-events-none absolute -inset-20 h-[calc(100%+10rem)] w-[calc(100%+10rem)] object-cover scale-150 blur-[80px] opacity-100 saturate-125"
+                  className="pointer-events-none absolute -inset-20 h-[calc(100%+10rem)] w-[calc(100%+10rem)] object-cover scale-150 blur-[80px] opacity-40 saturate-125 brightness-[0.35]"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
+                />
+                {/* Dark overlay on top of backdrop */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-black/55"
                 />
                 {/* Main image */}
                 <img
