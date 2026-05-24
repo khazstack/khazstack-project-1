@@ -157,12 +157,11 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   alt=""
                   aria-hidden
                   className="pointer-events-none absolute -inset-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)] object-cover blur-3xl scale-125 opacity-100 saturate-125"
-                  style={{ filter: "url(#gallery-ripple) blur(60px) saturate(1.25)" }}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
                 />
-                {/* Main image */}
+                {/* Main image with soft edge fade */}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
@@ -173,39 +172,17 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                />
-                {/* Ripple seam at the right edge between slides */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 -right-2 w-6"
                   style={{
-                    background:
-                      "linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent)",
-                    filter: "url(#gallery-ripple)",
+                    WebkitMaskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
+                    maskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
                   }}
                 />
               </div>
             ))}
           </div>
         </div>
-
-        {/* SVG turbulence filter for ripple effect on slide seams */}
-        <svg className="absolute h-0 w-0" aria-hidden focusable="false">
-          <defs>
-            <filter id="gallery-ripple" x="-5%" y="-5%" width="110%" height="110%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="2" seed="3">
-                <animate
-                  attributeName="baseFrequency"
-                  dur="12s"
-                  values="0.012 0.04;0.02 0.06;0.012 0.04"
-                  repeatCount="indefinite"
-                />
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" scale="8" />
-            </filter>
-          </defs>
-        </svg>
-
 
         {/* Page indicator dots */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5">
