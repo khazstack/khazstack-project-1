@@ -148,7 +148,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="group relative h-full flex-shrink-0 overflow-hidden bg-neutral-950"
+                className="relative h-full flex-shrink-0 overflow-hidden"
                 style={{ width }}
               >
                 {/* Ambient blurred backdrop — fills gaps with image color */}
@@ -156,36 +156,31 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   src={item.src}
                   alt=""
                   aria-hidden
-                  className="pointer-events-none absolute -inset-16 h-[calc(100%+8rem)] w-[calc(100%+8rem)] object-cover scale-150 blur-3xl opacity-90 saturate-150"
+                  className="pointer-events-none absolute -inset-20 h-[calc(100%+10rem)] w-[calc(100%+10rem)] object-cover scale-150 blur-[80px] opacity-100 saturate-125"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                />
-                {/* Soft vignette to deepen ambience */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.55)_100%)]"
                 />
                 {/* Main image */}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
                   className={cn(
-                    "relative h-full w-full drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]",
+                    "relative h-full w-full drop-shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
                 />
-                {/* Edge feathering — blends seamlessly with neighbors */}
+                {/* Soft feather mask on image edges — diffuses into ambient backdrop */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/40 to-transparent mix-blend-multiply"
+                  className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/30 to-transparent"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/40 to-transparent mix-blend-multiply"
+                  className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background/30 to-transparent"
                 />
               </div>
             ))}
