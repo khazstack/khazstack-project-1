@@ -161,7 +161,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   decoding="async"
                   draggable={false}
                 />
-                {/* Main image with soft edge fade */}
+                {/* Main image */}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
@@ -172,12 +172,6 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  style={{
-                    WebkitMaskImage:
-                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
-                    maskImage:
-                      "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 8%, rgba(0,0,0,0.7) 22%, #000 45%, #000 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.25) 92%, transparent 100%)",
-                  }}
                 />
               </div>
             ))}
