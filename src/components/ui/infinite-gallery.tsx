@@ -152,25 +152,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 style={{ width }}
               >
                 {item.mobileFit === "contain" && (
-                  <>
-                    <img
-                      src={item.src}
-                      alt=""
-                      aria-hidden
-                      className="absolute inset-0 h-full w-full object-cover scale-150 blur-3xl opacity-70 saturate-150"
-                      loading="lazy"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 backdrop-blur-2xl bg-black/20"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"
-                    />
-                  </>
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
                 )}
                 <img
                   src={item.src}
