@@ -21,7 +21,6 @@ function calculateWidth(item: MediaItem, viewportHeight: number): number {
 const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
   ({ className, items, enabled = true, ...props }, ref) => {
     const scrollRef = React.useRef<HTMLDivElement>(null)
-    const tileRefs = React.useRef<Array<HTMLDivElement | null>>([])
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
     )
@@ -30,11 +29,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     )
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
+    // Calculate widths for all items based on viewport height × aspect ratio
+    // Same proportional sizing on mobile and desktop
     const itemWidths = React.useMemo(
       () => items.map((item) => calculateWidth(item, viewportHeight)),
       [items, viewportHeight]
     )
 
+
+    // Cumulative positions for each item
     const itemPositions = React.useMemo(() => {
       const positions: number[] = [0]
       itemWidths.forEach((width, i) => {
@@ -43,13 +46,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
       return positions
     }, [itemWidths])
 
+    // Total width of one set of images
     const setWidth = React.useMemo(
       () => itemWidths.reduce((sum, w) => sum + w, 0),
       [itemWidths]
     )
 
+    // Number of times to repeat for seamless infinite scroll
     const repeatCount = 50
-
+    // Handle resize
     React.useEffect(() => {
       const onResize = () => {
         setViewportHeight(window.innerHeight)
@@ -59,74 +64,35 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
       return () => window.removeEventListener("resize", onResize)
     }, [])
 
-    // Scroll-driven creative transitions via rAF
+
+    // Initialize scroll position to middle and handle infinite loop + page tracking
     React.useEffect(() => {
       const container = scrollRef.current
       if (!container || !enabled) return
 
-      let rafId = 0
-      let ticking = false
+      // Start in the middle to allow scrolling both directions
+      const middlePosition = setWidth * Math.floor(repeatCount / 2)
+      container.scrollLeft = middlePosition
 
-      const applyTransforms = () => {
-        const scrollLeft = container.scrollLeft
-        const vw = window.innerWidth
-        const vh = window.innerHeight
-        const centerX = scrollLeft + vw / 2
-
-        for (const tile of tileRefs.current) {
-          if (!tile) continue
-          const tileLeft = tile.offsetLeft
-          const tileWidth = tile.offsetWidth
-          const tileCenter = tileLeft + tileWidth / 2
-          const distance = tileCenter - centerX
-          // Normalized -1 .. 1 across roughly one viewport width
-          const t = Math.max(-1.4, Math.min(1.4, distance / vw))
-          const abs = Math.abs(t)
-
-          // Creative composite transform:
-          //  - subtle 3D rotation as the tile passes the center
-          //  - depth scale (center pops forward)
-          //  - parallax image shift inside the tile (opposite direction)
-          const rotateY = t * -18 // deg
-          const scale = 1 - abs * 0.12
-          const translateZ = (1 - abs) * 40
-          const opacity = 1 - abs * 0.35
-
-          tile.style.transform = `perspective(1400px) translate3d(0,0,0) rotateY(${rotateY}deg) scale(${scale}) translateZ(${translateZ}px)`
-          tile.style.opacity = String(opacity)
-          tile.style.zIndex = String(Math.round((1 - abs) * 100))
-
-          const img = tile.querySelector<HTMLImageElement>("[data-main-img]")
-          if (img) {
-            const parallax = t * 40 // px, image moves opposite of motion
-            const imgScale = 1.05 + (1 - abs) * 0.08
-            img.style.transform = `translate3d(${-parallax}px, 0, 0) scale(${imgScale})`
-          }
-
-          const blur = tile.querySelector<HTMLImageElement>("[data-blur-bg]")
-          if (blur) {
-            blur.style.transform = `scale(1.2) translate3d(${t * 20}px, 0, 0)`
-            blur.style.opacity = String(0.45 + (1 - abs) * 0.35)
-          }
-        }
-
-        ticking = false
-      }
-
-      const onScroll = () => {
-        if (!ticking) {
-          rafId = requestAnimationFrame(applyTransforms)
-          ticking = true
-        }
-
+      const handleScroll = () => {
         const scrollLeft = container.scrollLeft
         const maxScroll = setWidth * (repeatCount - 5)
         const minScroll = setWidth * 5
-        if (scrollLeft > maxScroll) container.scrollLeft = scrollLeft - setWidth * 20
-        if (scrollLeft < minScroll) container.scrollLeft = scrollLeft + setWidth * 20
 
+        // If scrolled too far right, jump back
+        if (scrollLeft > maxScroll) {
+          container.scrollLeft = scrollLeft - setWidth * 20
+        }
+        // If scrolled too far left, jump forward
+        if (scrollLeft < minScroll) {
+          container.scrollLeft = scrollLeft + setWidth * 20
+        }
+
+        // Calculate current image index
         const viewportCenter = scrollLeft + window.innerWidth / 2
         const positionInSet = viewportCenter % setWidth
+
+        // Find which image the center is in
         let index = 0
         for (let i = 0; i < itemPositions.length - 1; i++) {
           if (positionInSet >= itemPositions[i] && positionInSet < itemPositions[i + 1]) {
@@ -137,18 +103,13 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
         setCurrentIndex(index)
       }
 
-      // Init position
-      const middlePosition = setWidth * Math.floor(repeatCount / 2)
-      container.scrollLeft = middlePosition
+      container.addEventListener("scroll", handleScroll, { passive: true })
+      // Initial calculation
+      handleScroll()
+      return () => container.removeEventListener("scroll", handleScroll)
+    }, [setWidth, enabled, repeatCount, itemPositions])
 
-      container.addEventListener("scroll", onScroll, { passive: true })
-      applyTransforms()
-      return () => {
-        container.removeEventListener("scroll", onScroll)
-        cancelAnimationFrame(rafId)
-      }
-    }, [setWidth, enabled, repeatCount, itemPositions, itemWidths])
-
+    // Generate repeated items
     const repeatedItems = React.useMemo(() => {
       const result: Array<{ item: MediaItem; width: number; key: string }> = []
       for (let i = 0; i < repeatCount; i++) {
@@ -178,30 +139,24 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             "scrollbar-none [&::-webkit-scrollbar]:hidden",
             "[-ms-overflow-style:none] [scrollbar-width:none]"
           )}
-          style={{ contain: "strict", perspective: "1400px" }}
+          style={{ contain: "strict" }}
         >
           <div
             className="flex h-full"
-            style={{ width: totalWidth, transformStyle: "preserve-3d" }}
+            style={{ width: totalWidth }}
           >
-            {repeatedItems.map(({ item, width, key }, i) => (
+            {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                ref={(el) => (tileRefs.current[i] = el)}
-                className="relative h-full flex-shrink-0 overflow-hidden bg-black will-change-transform"
-                style={{
-                  width,
-                  transformStyle: "preserve-3d",
-                  transition: "opacity 200ms ease-out",
-                }}
+                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
+                style={{ width }}
               >
                 {item.mobileFit === "contain" && (
                   <img
                     src={item.src}
                     alt=""
                     aria-hidden
-                    data-blur-bg
-                    className="absolute inset-0 h-full w-full object-cover blur-2xl will-change-transform"
+                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
                     loading="lazy"
                     decoding="async"
                     draggable={false}
@@ -210,23 +165,13 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  data-main-img
                   className={cn(
-                    "relative h-full w-full will-change-transform",
+                    "relative h-full w-full",
                     item.mobileFit === "contain" ? "object-contain" : "object-cover"
                   )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                />
-                {/* Soft edge vignette to blend tiles into each other */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 82%, rgba(0,0,0,0.55) 100%)",
-                  }}
                 />
               </div>
             ))}
