@@ -6,7 +6,6 @@ export interface MediaItem {
   width: number
   height: number
   alt?: string
-  mobileFit?: "cover" | "contain"
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,13 +26,21 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [viewportWidth, setViewportWidth] = React.useState(
       typeof window !== "undefined" ? window.innerWidth : 1200
     )
+    const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // Calculate widths for all items based on viewport height × aspect ratio
-    // Same proportional sizing on mobile and desktop
+    // Calculate widths for all items
+    // On mobile: each slide takes full viewport width (object-contain shows whole photo)
+    // On desktop: width is derived from viewport height × aspect ratio
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () =>
+        items.map((item) => {
+          if (isMobile) return viewportWidth
+          // Landscape photos fill full viewport width, cropped to cover
+          if (item.width > item.height) return viewportWidth
+          return calculateWidth(item, viewportHeight)
+        }),
+      [items, viewportHeight, viewportWidth, isMobile]
     )
 
 
@@ -148,26 +155,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0 overflow-hidden bg-black"
+                className="relative h-full flex-shrink-0"
                 style={{ width }}
               >
-                {item.mobileFit === "contain" && (
-                  <img
-                    src={item.src}
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-60"
-                    loading="lazy"
-                    decoding="async"
-                    draggable={false}
-                  />
-                )}
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
                   className={cn(
-                    "relative h-full w-full",
-                    item.mobileFit === "contain" ? "object-contain" : "object-cover"
+                    "h-full w-full bg-black md:object-cover",
+                    item.width > item.height ? "object-cover" : "object-contain"
                   )}
                   loading="lazy"
                   decoding="async"
