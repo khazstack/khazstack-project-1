@@ -9,11 +9,17 @@ const IntroOverlay = ({ imageSrc }: { imageSrc: string | null }) => {
   if (!imageSrc) return null
 
   return (
-    <div className="fixed inset-0 z-20 h-dvh w-dvw bg-black">
+    <div className="fixed inset-0 z-20 h-dvh w-dvw overflow-hidden">
       <img
         src={imageSrc}
         alt=""
-        className="h-dvh w-dvw object-cover"
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl"
+      />
+      <img
+        src={imageSrc}
+        alt=""
+        className="relative h-dvh w-dvw object-contain"
       />
     </div>
   )
