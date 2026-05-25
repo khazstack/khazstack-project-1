@@ -46,7 +46,7 @@ const About = () =>
       <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-12 text-center">
         Основная информация
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-base">
         {[
       ["Полное имя", "Молдабаева Эльмира Абайевна"],
       ["Возраст", "41 год"],
@@ -194,7 +194,7 @@ const About = () =>
       
       <div className="space-y-8">
         {/* Live-стриминг */}
-        <div>
+        <div className="text-center">
           <h3 className="text-sm md:text-base uppercase tracking-[0.2em] text-white/50 font-semibold mb-5 text-center">
             Live-стриминг / Прямые эфиры
           </h3>
@@ -214,7 +214,7 @@ const About = () =>
         </div>
 
         {/* Другое */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-base">
           {[
             ["Вождение", "Категория B (механика, автомат)"],
             ["Спорт", "Плавание, фитнес"],
