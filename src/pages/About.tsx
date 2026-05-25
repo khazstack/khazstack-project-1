@@ -195,7 +195,7 @@ const About = () =>
       <div className="space-y-8">
         {/* Live-стриминг */}
         <div>
-          <h3 className="text-sm md:text-base uppercase tracking-[0.2em] text-white/50 font-semibold mb-5">
+          <h3 className="text-sm md:text-base uppercase tracking-[0.2em] text-white/50 font-semibold mb-5 text-center">
             Live-стриминг / Прямые эфиры
           </h3>
           <ul className="space-y-3 pl-1 text-center">
