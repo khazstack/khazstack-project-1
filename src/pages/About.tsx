@@ -127,6 +127,9 @@ const About = () =>
           { title: "«1Fit»", role: "Спортсменка 40+, призывающая заниматься спортом", year: "2025" },
           { title: "«Тик-так»", role: "Гостья на банкете", year: "2025" },
           { title: "«Télé 2»", role: "Зритель взлёта ракеты на Байконуре", year: "2026" },
+          { title: "«Тинькофф»", role: "Прохожий", year: "2026" },
+          { title: "Vivo (телефон)", role: "Гостья на свадьбе", year: "2026" },
+
         ].map((item) =>
           <div key={item.title} className="bg-white/5 border border-white/10 rounded-lg px-5 py-5">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
