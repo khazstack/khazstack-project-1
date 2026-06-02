@@ -85,6 +85,14 @@ const About = () =>
           { title: "«Ерекше»", role: "Эпизод — маникюрщица; сцена «Клуб»", year: "2025", director: "Ернар Нургалиев" },
           { title: "«Дәстүр 2» (тизер)", role: "Эпизод — врач", year: "2025", director: "Алишер Утев" },
           { title: "«Мошенники в кино» (сериал)", role: "Работник офиса; приглашённая гостья на благотворительном вечере", year: "2025–2026", director: "Олжас Нурбай, Азамат Жанабеков" },
+          { title: "«Байдын баласы 2»", role: "Эпизод — друг семьи", year: "2026", director: "Абдусаид Шайхисламулы" },
+          { title: "«7 ата»", role: "Родственница главной героини, сцена «Похороны»", year: "2026", director: "Айсултан Сеитов" },
+          { title: "«Бажа 3»", role: "Эпизод — мама именинника", year: "2026", director: "Олжас Нурбай" },
+          { title: "«Журегімнің иесі»", role: "Эпизод — Жеңге", year: "2026", director: "—" },
+          { title: "«Айыптама»", role: "Банковский работник, руководитель отдела", year: "2026", director: "Дастан Алдабек" },
+          { title: "«7 апке»", role: "Групповка", year: "2026", director: "Абдусаид Шайхисламулы" },
+          { title: "«Ағайынды»", role: "Главная роль — Жанар", year: "2026", director: "Дастан Абильмажинов" },
+          { title: "«Хат»", role: "Эпизод — Жеңге", year: "2026", director: "Ботагөз Кеніщбай" },
         ].map((item) =>
           <div key={item.title} className="bg-white/5 border border-white/10 rounded-lg px-5 py-5">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
@@ -97,6 +105,7 @@ const About = () =>
             <p className="text-sm md:text-base text-white/70">
               <span className="text-white/40 uppercase text-xs tracking-wider mr-2">Режиссёр:</span>{item.director}
             </p>
+
             {item.note && <p className="text-xs text-white/40 mt-2 italic">{item.note}</p>}
           </div>
         )}
