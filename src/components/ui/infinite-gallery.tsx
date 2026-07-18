@@ -198,3 +198,4 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
 InfiniteGallery.displayName = "InfiniteGallery"
 
 export { InfiniteGallery }
+// gallery: 18 photos, mobile full-bleed
