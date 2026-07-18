@@ -43,7 +43,7 @@ export const galleryImages: MediaItem[] = [
   { src: photo14, width: 1028, height: 1800, alt: "Портрет 14" },
   { src: photo15, width: 960, height: 1280, alt: "Портрет 15" },
   { src: photo16, width: 1440, height: 1800, alt: "Портрет 16" },
-  { src: photo17, width: 558, height: 838, alt: "Портрет 17", objectPosition: "60% 12%" },
+  { src: photo17, width: 558, height: 838, alt: "Портрет 17" },
   { src: photo18, width: 953, height: 1531, alt: "Портрет 18" },
 ]
 
