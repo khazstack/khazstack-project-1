@@ -21,8 +21,8 @@ function calculateWidth(
   viewportWidth: number,
   isMobile: boolean
 ): number {
-  // On mobile, each slide fills 100% of the screen width edge-to-edge
-  // (object-cover handles cropping to match the aspect ratio).
+  // On mobile, each slide's container fills 100% of the screen width;
+  // object-contain (set below) shows the full photo within it, no cropping.
   if (isMobile) return viewportWidth
   return (viewportHeight * item.width) / item.height
 }
@@ -170,8 +170,7 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover text-lg"
-                  style={{ objectPosition: item.objectPosition ?? "center 15%" }}
+                  className="h-full w-full object-contain text-lg"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
