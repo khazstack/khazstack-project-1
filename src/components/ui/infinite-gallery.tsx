@@ -13,15 +13,11 @@ interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   enabled?: boolean
 }
 
-function calculateWidth(
-  item: MediaItem,
-  viewportHeight: number,
-  viewportWidth: number,
-  isMobile: boolean
-): number {
-  // On mobile, each slide's container fills 100% of the screen width;
-  // object-contain (below) then shows the full photo within it, uncropped.
-  if (isMobile) return viewportWidth
+function calculateWidth(item: MediaItem, viewportHeight: number): number {
+  // Every slide is sized to the photo's own aspect ratio at full viewport
+  // height. Combined with object-contain, this means each container's shape
+  // exactly matches its photo — no cropping, and no black gaps between
+  // consecutive photos since each one is exactly as wide as it needs to be.
   return (viewportHeight * item.width) / item.height
 }
 
@@ -31,21 +27,14 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const [viewportHeight, setViewportHeight] = React.useState(
       typeof window !== "undefined" ? window.innerHeight : 800
     )
-    const [viewportWidth, setViewportWidth] = React.useState(
-      typeof window !== "undefined" ? window.innerWidth : 1200
-    )
-    const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // On mobile each slide fills the full screen width (100%), edge-to-edge.
-    // On desktop, slides are sized to the photo's natural aspect ratio at
-    // full viewport height, so photos sit edge-to-edge with no black gaps.
+    // Every slide is sized to its photo's natural aspect ratio at full
+    // viewport height, on every device, so photos sit flush edge-to-edge
+    // with no black gaps between them and no cropping.
     const itemWidths = React.useMemo(
-      () =>
-        items.map((item) =>
-          calculateWidth(item, viewportHeight, viewportWidth, isMobile)
-        ),
-      [items, viewportHeight, viewportWidth, isMobile]
+      () => items.map((item) => calculateWidth(item, viewportHeight)),
+      [items, viewportHeight]
     )
 
 
@@ -72,7 +61,6 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     React.useEffect(() => {
       const onResize = () => {
         setViewportHeight(window.innerHeight)
-        setViewportWidth(window.innerWidth)
       }
       window.addEventListener("resize", onResize)
       return () => window.removeEventListener("resize", onResize)
