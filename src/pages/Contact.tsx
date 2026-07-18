@@ -103,12 +103,12 @@ const Contact = () => {
               Instagram
             </p>
             <a
-              href="https://instagram.com/..."
+              href="https://instagram.com/hustle_pride_skaye"
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none" }}
             >
-              instagram.com/...
+              instagram.com/hustle_pride_skaye
             </a>
           </div>
         </div>
