@@ -6,6 +6,8 @@ export interface MediaItem {
   width: number
   height: number
   alt?: string
+  /** If true, show the full photo without cropping (centered, letterboxed) instead of edge-to-edge cover crop. */
+  noCrop?: boolean
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -162,15 +164,16 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
             {repeatedItems.map(({ item, width, key }) => (
               <div
                 key={key}
-                className="relative h-full flex-shrink-0"
+                className="relative h-full flex-shrink-0 bg-black"
                 style={{ width }}
               >
                 <img
                   src={item.src}
                   alt={item.alt ?? ""}
-                  className="h-full w-full object-cover text-lg"
-
-
+                  className={cn(
+                    "h-full w-full text-lg",
+                    item.noCrop ? "object-contain" : "object-cover"
+                  )}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
