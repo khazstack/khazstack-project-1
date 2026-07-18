@@ -64,7 +64,7 @@ const Index = () => {
       {/* Skip hint during intro */}
       {phase === "intro" && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30">
-          <p className="text-white/40 text-xs uppercase tracking-widest animate-pulse">
+          <p className="text-white/40 text-xs uppercase tracking-widest animate-pulse font-bold">
             Нажмите, чтобы пропустить
           </p>
         </div>
