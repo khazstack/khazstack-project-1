@@ -118,13 +118,10 @@ const Contact = () => {
           <Phone size={16} style={{ marginTop: 2, opacity: 0.5, flexShrink: 0 }} />
           <div>
             <p style={{ fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>
-              Контакты
+              Телефон
             </p>
-            <a href="tel:" style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none", display: "block", marginBottom: 4 }}>
-              +x xxx xx xx
-            </a>
-            <a href="tel:" style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none", display: "block", marginTop: 8 }}>
-              +x xxx xx xx
+            <a href="tel:+77958980304" style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none", display: "block" }}>
+              +7-795-898-0304
             </a>
           </div>
         </div>
@@ -137,10 +134,10 @@ const Contact = () => {
               Почта
             </p>
             <a
-              href="mailto:"
+              href="mailto:Mr.12.sk@gmail.com"
               style={{ fontSize: 13, letterSpacing: "0.1em", color: "rgba(255,255,255,0.8)", textDecoration: "none" }}
             >
-              @...mail.ru
+              Mr.12.sk@gmail.com
             </a>
           </div>
         </div>
