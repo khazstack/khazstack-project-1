@@ -19,7 +19,7 @@ const IntroOverlay = ({ imageSrc }: { imageSrc: string | null }) => {
       <img
         src={imageSrc}
         alt=""
-        className="relative h-dvh w-dvw object-contain"
+        className="relative h-dvh w-dvw object-cover"
       />
     </div>
   )
