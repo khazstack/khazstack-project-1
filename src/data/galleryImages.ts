@@ -1,23 +1,30 @@
 import type { MediaItem } from "@/components/ui/infinite-gallery"
 
-import photo1 from "@/assets/photo1.jpg"
-import photo2 from "@/assets/photo2.jpg"
-import photo3 from "@/assets/photo3.jpg"
-import photo4 from "@/assets/photo4.jpg"
-import photo5 from "@/assets/photo5.jpg"
-import photo6 from "@/assets/photo6.jpg"
-import photo7 from "@/assets/photo7.jpg"
-import photo8 from "@/assets/photo8.jpg"
-import photo9 from "@/assets/photo9.jpg"
-import photo10 from "@/assets/photo10.jpg"
-import photo11 from "@/assets/photo11.jpg"
-import photo12 from "@/assets/photo12.jpg"
-import photo13 from "@/assets/photo13.jpg"
-import photo14 from "@/assets/photo14.jpg"
-import photo15 from "@/assets/photo15.jpg"
-import photo16 from "@/assets/photo16.jpg"
-import photo17 from "@/assets/photo17.jpg"
-import photo18 from "@/assets/photo18.jpg"
+import portrait from "@/assets/portrait.jpg"
+import heroBg from "@/assets/hero-bg.jpg"
+import performance from "@/assets/performance.jpg"
+import videoBg from "@/assets/video-bg.jpg"
+import aboutHero from "@/assets/about-hero.jpeg"
+import contactHero from "@/assets/contact-hero.jpeg"
+
+const photo1 = portrait
+const photo2 = heroBg
+const photo3 = performance
+const photo4 = videoBg
+const photo5 = aboutHero
+const photo6 = contactHero
+const photo7 = portrait
+const photo8 = heroBg
+const photo9 = performance
+const photo10 = videoBg
+const photo11 = aboutHero
+const photo12 = contactHero
+const photo13 = portrait
+const photo14 = heroBg
+const photo15 = performance
+const photo16 = videoBg
+const photo17 = aboutHero
+const photo18 = contactHero
 
 export const galleryImages: MediaItem[] = [
   { src: photo1, width: 828, height: 1026, alt: "Портрет 1" },
