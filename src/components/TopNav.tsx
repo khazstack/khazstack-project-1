@@ -8,6 +8,9 @@ const navItems = [
 
 const TopNav = () => {
   const { pathname } = useLocation();
+  const isHome = pathname === "/";
+  const activeColor = isHome ? "#000" : "#fff";
+  const inactiveColor = isHome ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)";
 
   return (
     <nav className="fixed top-0 left-0 right-0 flex justify-center items-center gap-8 h-[44px] z-50 text-lg">
@@ -20,7 +23,7 @@ const TopNav = () => {
             fontSize: 12,
             letterSpacing: "0.3em",
             textTransform: "uppercase" as const,
-            color: pathname === to ? "#000" : "rgba(0,0,0,0.4)",
+            color: pathname === to ? activeColor : inactiveColor,
             fontWeight: 700,
             textDecoration: "none",
             fontFamily: "'Space Grotesk', monospace",
