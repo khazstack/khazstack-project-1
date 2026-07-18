@@ -13,7 +13,15 @@ interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   enabled?: boolean
 }
 
-function calculateWidth(item: MediaItem, viewportHeight: number): number {
+function calculateWidth(
+  item: MediaItem,
+  viewportHeight: number,
+  viewportWidth: number,
+  isMobile: boolean
+): number {
+  // On mobile, each slide fills 100% of the screen width edge-to-edge
+  // (object-cover handles cropping to match the aspect ratio).
+  if (isMobile) return viewportWidth
   return (viewportHeight * item.width) / item.height
 }
 
@@ -29,11 +37,15 @@ const InfiniteGallery = React.forwardRef<HTMLDivElement, InfiniteGalleryProps>(
     const isMobile = viewportWidth < 768
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
-    // Each slide is sized to the photo's natural aspect ratio at full viewport
-    // height, so photos sit edge-to-edge with no black gaps.
+    // On mobile each slide fills the full screen width (100%), edge-to-edge.
+    // On desktop, slides are sized to the photo's natural aspect ratio at
+    // full viewport height, so photos sit edge-to-edge with no black gaps.
     const itemWidths = React.useMemo(
-      () => items.map((item) => calculateWidth(item, viewportHeight)),
-      [items, viewportHeight]
+      () =>
+        items.map((item) =>
+          calculateWidth(item, viewportHeight, viewportWidth, isMobile)
+        ),
+      [items, viewportHeight, viewportWidth, isMobile]
     )
 
 
