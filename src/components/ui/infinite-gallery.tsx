@@ -6,8 +6,6 @@ export interface MediaItem {
   width: number
   height: number
   alt?: string
-  /** CSS object-position for the cropped image, e.g. "center top". Defaults to "center". */
-  objectPosition?: string
 }
 
 interface InfiniteGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,7 +20,7 @@ function calculateWidth(
   isMobile: boolean
 ): number {
   // On mobile, each slide's container fills 100% of the screen width;
-  // object-contain (set below) shows the full photo within it, no cropping.
+  // object-contain (below) then shows the full photo within it, uncropped.
   if (isMobile) return viewportWidth
   return (viewportHeight * item.width) / item.height
 }
