@@ -20,7 +20,7 @@ const TopNav = () => {
             fontSize: 12,
             letterSpacing: "0.3em",
             textTransform: "uppercase" as const,
-            color: pathname === to ? "#fff" : "rgba(255,255,255,0.4)",
+            color: pathname === to ? "#000" : "rgba(0,0,0,0.4)",
             fontWeight: 700,
             textDecoration: "none",
             fontFamily: "'Space Grotesk', monospace",
